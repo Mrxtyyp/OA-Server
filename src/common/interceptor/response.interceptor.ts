@@ -5,8 +5,9 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { map } from 'rxjs/operators';
-import { RCode } from '../constant/rcode';
+import { ResClass } from '../class/res.class';
 
+// 实现对成功请求的拦截
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {
   intercept(
@@ -14,12 +15,8 @@ export class ResponseInterceptor implements NestInterceptor {
     next: CallHandler<any>,
   ): import('rxjs').Observable<any> | Promise<import('rxjs').Observable<any>> {
     return next.handle().pipe(
-      map((content) => {
-        return {
-          data: content.data || {},
-          code: content.code || RCode.OK,
-          msg: content.msg || '',
-        };
+      map((data) => {
+        return new ResClass(200, data);
       }),
     );
   }

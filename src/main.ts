@@ -6,6 +6,7 @@ import { logger } from './common/middleware/logger.middleware';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { ResponseInterceptor } from './common/interceptor/response.interceptor';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -24,6 +25,9 @@ async function bootstrap() {
 
   // 配置全局拦截器
   app.useGlobalInterceptors(new ResponseInterceptor());
+
+  // 全局的验证管道
+  app.useGlobalPipes(new ValidationPipe());
 
   // 配置 Swagger 文档
   const options = new DocumentBuilder()
