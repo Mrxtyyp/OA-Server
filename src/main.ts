@@ -2,14 +2,15 @@ import * as bodyParser from 'body-parser';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cors from 'cors';
-import { logger } from './common/middleware/logger.middleware';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { ResponseInterceptor } from './common/interceptor/response.interceptor';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 
+// import { Logger } from 'nestjs-pino';
+
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { bufferLogs: true });
 
   // 允许跨域
   app.use(cors());
@@ -17,8 +18,8 @@ async function bootstrap() {
   //   body转json
   app.use(bodyParser.json());
 
-  // 日志中间件
-  app.use(logger);
+  // 自定义 logger
+  //   app.useLogger(app.get(Logger));
 
   // 全局过滤器
   app.useGlobalFilters(new HttpExceptionFilter());

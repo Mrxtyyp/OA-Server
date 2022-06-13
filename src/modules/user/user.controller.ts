@@ -40,6 +40,7 @@ export class UserController {
     return this.userService.findOne(+id);
   }
 
+  @ApiOperation({ summary: '编辑用户' })
   @Put(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);

@@ -16,6 +16,7 @@ export class CreateUserDto {
   name: string;
 
   @ApiProperty({ description: '手机号', required: true })
+  @IsString()
   @IsMobilePhone()
   mobile: string;
 
@@ -36,6 +37,8 @@ export class CreateUserDto {
   sex?: string;
 
   @ApiProperty({ description: '岗位' })
+  @IsString()
+  @IsOptional()
   job?: string;
 
   @ApiProperty({ description: '状态 1: 在职 2: 离职 3: 试用期' })

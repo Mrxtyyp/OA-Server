@@ -3,6 +3,8 @@ import { TypeOrmModule, TypeOrmModuleAsyncOptions } from '@nestjs/typeorm';
 import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
 import { UserModule } from './modules/user/user.module';
+import { MenuModule } from './modules/menu/menu.module';
+import { RoleModule } from './modules/role/role.module';
 
 @Module({
   imports: [
@@ -23,7 +25,6 @@ import { UserModule } from './modules/user/user.module';
         } as TypeOrmModuleAsyncOptions;
       },
     }),
-
     // TypeOrmModule.forRoot({
     //   type: 'mysql',
     //   host: 'localhost',
@@ -35,6 +36,10 @@ import { UserModule } from './modules/user/user.module';
     //   synchronize: true,
     // }),
     UserModule,
+
+    MenuModule,
+
+    RoleModule,
   ],
 })
 export class AppModule {}
