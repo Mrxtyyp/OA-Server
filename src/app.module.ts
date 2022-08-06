@@ -5,6 +5,7 @@ import { ConfigService } from './config/config.service';
 import { UserModule } from './modules/user/user.module';
 import { MenuModule } from './modules/menu/menu.module';
 import { RoleModule } from './modules/role/role.module';
+import { DeptModule } from './modules/dept/dept.module';
 
 @Module({
   imports: [
@@ -40,6 +41,8 @@ import { RoleModule } from './modules/role/role.module';
     MenuModule,
 
     RoleModule,
+
+    DeptModule,
   ],
 })
 export class AppModule {}

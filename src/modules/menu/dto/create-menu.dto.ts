@@ -1,11 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsIn,
-  IsNumber,
-  IsOptional,
-  IsString,
-  ValidateIf,
-} from 'class-validator';
+import { IsIn, IsNumber, IsString, ValidateIf } from 'class-validator';
 
 export class CreateMenuDto {
   @ApiProperty({ description: '菜单名称', required: true })
